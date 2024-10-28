@@ -112,8 +112,6 @@ type RunRequest struct {
 	ResponseFormat any `json:"response_format,omitempty"`
 	// Disable the default behavior of parallel tool calls by setting it: false.
 	ParallelToolCalls any `json:"parallel_tool_calls,omitempty"`
-	// Stream back partial progress. If set, tokens will be sent as data-only server-sent events as they become available, with the stream terminated by a data: [DONE] message.
-	Stream bool `json:"stream,omitempty"`
 }
 
 // ThreadTruncationStrategy defines the truncation strategy to use for the thread.

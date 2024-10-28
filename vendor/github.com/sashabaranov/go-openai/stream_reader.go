@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	utils "github.com/sashabaranov/go-openai/internal"
 )
 
 var (
@@ -14,7 +16,7 @@ var (
 )
 
 type streamable interface {
-	ChatCompletionStreamResponse | CompletionResponse | RunStream | Run
+	ChatCompletionStreamResponse | CompletionResponse
 }
 
 type streamReader[T streamable] struct {
@@ -23,8 +25,8 @@ type streamReader[T streamable] struct {
 
 	reader         *bufio.Reader
 	response       *http.Response
-	errAccumulator ErrorAccumulator
-	unmarshaler    Unmarshaler
+	errAccumulator utils.ErrorAccumulator
+	unmarshaler    utils.Unmarshaler
 
 	httpHeader
 }
